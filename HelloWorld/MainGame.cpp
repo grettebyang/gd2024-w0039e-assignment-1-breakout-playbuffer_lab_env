@@ -1,12 +1,9 @@
-#define PLAY_IMPLEMENTATION
-#define PLAY_USING_GAMEOBJECT_MANAGER
 #include "game.h"
-#include "constants.h"
 
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
-	Play::CreateManager( DISPLAY_WIDTH, DISPLAY_HEIGHT, DISPLAY_SCALE );
+	SetupScene();
 	SpawnBall();
 }
 
@@ -14,9 +11,9 @@ void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 bool MainGameUpdate( float elapsedTime )
 {
 	Play::ClearDrawingBuffer( Play::cBlack );
-	Play::PresentDrawingBuffer();
 	StepFrame(elapsedTime);
-	return Play::KeyDown( KEY_ESCAPE );
+	Play::PresentDrawingBuffer();
+	return Play::KeyDown( Play::KeyboardButton::KEY_ESCAPE );
 }
 
 // Gets called once when the player quits the game 
